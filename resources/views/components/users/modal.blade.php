@@ -32,7 +32,7 @@
                     <!-- Nombre -->
                     <div class="mb-5 col-span-4">
                         <label for="Nombre" class="block mb-2 text-sm font-medium text-gray-900">
-                            Nombre
+                            Nombres y Apellidos
                         </label>
                         <input
                             type="text"

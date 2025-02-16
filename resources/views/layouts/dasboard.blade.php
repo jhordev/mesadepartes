@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Admin - {{ config('app.name') }}</title>
 
+    {{-- Fuentes --}}
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,26 +15,28 @@
         rel="stylesheet"
     >
 
+    {{-- Vite --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="antialiased bg-[#F5F6FA] text-[#20262E]">
+<body class="antialiased bg-green-50 text-[#20262E]">
 
-<nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200">
+{{-- NAV SUPERIOR --}}
+<nav class="fixed top-0 z-50 w-full bg-[#007423] ">
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
         <div class="flex items-center justify-between">
+            {{-- Botón de toggler del menú lateral (solo en móviles) y logo --}}
             <div class="flex items-center justify-start">
                 <button
                     data-drawer-toggle="logo-sidebar"
                     aria-controls="logo-sidebar"
                     type="button"
-                    class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden
-                           hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                    class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden"
                 >
                     <span class="sr-only">Open sidebar</span>
                     <svg
                         class="w-6 h-6"
                         aria-hidden="true"
-                        fill="currentColor"
+                        fill="#fff"
                         viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg"
                     >
@@ -52,45 +55,45 @@
                         ></path>
                     </svg>
                 </button>
-                <a href="#" class="flex items-center gap-2 ml-2 md:mr-24">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         width="24" height="24" viewBox="0 0 24 24"
-                         fill="none" stroke="currentColor"
-                         stroke-width="2" stroke-linecap="round"
-                         stroke-linejoin="round"
-                         class="lucide lucide-circle-user"
-                    >
-                        <circle cx="12" cy="12" r="10"/>
-                        <circle cx="12" cy="10" r="3"/>
-                        <path d="M7 20.662V19a2 2 0
-                                 0 1 2-2h6a2 2 0
-                                 0 1 2 2v1.662"/>
-                    </svg>
-                    <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap">
-                        @if(auth()->user()->areas->count())
-                            {{ auth()->user()->areas->pluck('Nombre_Area')->join(', ') }}
-                        @else
-                            Panel Administrador
-                        @endif
-                    </span>
-                </a>
+                <img
+                    src="{{ asset('logowhite.png') }}"
+                    alt="Logo"
+                    class="h-[60px] hidden md:flex"
+                >
             </div>
 
+            {{-- Info de usuario y logout --}}
             <div class="flex items-center">
-                <div class="flex items-center ml-3 relative">
+                <div class="flex items-center gap-2 justify-end ml-3 relative">
+                    <div class="flex flex-col justify-end">
+                        <span class="self-center text-white text-right text-xl uppercase font-semibold sm:text-[14px] whitespace-nowrap">
+                            @if(auth()->user()->areas->count())
+                                {{ auth()->user()->areas->pluck('Nombre_Area')->join(', ') }}
+                            @else
+                                Panel Administrador
+                            @endif
+                        </span>
+                        <p class="text-[12px] text-white font-medium text-right truncate">
+                            {{ auth()->user()->Correo ?? '' }}
+                        </p>
+                    </div>
+
                     <button
                         type="button"
-                        class="flex text-sm bg-gray-800 rounded-full
-                               focus:ring-4 focus:ring-gray-300"
+                        class="flex text-sm bg-white rounded-full p-1"
                         aria-expanded="false"
                         data-dropdown-toggle="dropdown-user"
                     >
                         <span class="sr-only">Open user menu</span>
-                        <img
+                        <svg
                             class="w-8 h-8 rounded-full"
-                            src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                            alt="user photo"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 16 16"
                         >
+                            <path d="M8 7C9.65685 7 11 5.65685 11 4C11 2.34315 9.65685 1 8 1C6.34315 1 5 2.34315 5 4C5 5.65685 6.34315 7 8 7Z" fill="#007423"></path>
+                            <path d="M14 12C14 10.3431 12.6569 9 11 9H5C3.34315 9 2 10.3431 2 12V15H14V12Z" fill="#007423"></path>
+                        </svg>
                     </button>
                     <div
                         class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100
@@ -109,7 +112,7 @@
                             <li>
                                 <a
                                     href="/dashboard/perfil"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-[#007423] hover:text-white"
                                 >
                                     Perfil
                                 </a>
@@ -119,7 +122,7 @@
                                     @csrf
                                     <button
                                         type="submit"
-                                        class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-red-600 hover:text-white"
                                     >
                                         Cerrar sesión
                                     </button>
@@ -133,21 +136,25 @@
     </div>
 </nav>
 
+{{-- SIDEBAR --}}
 <aside
     id="logo-sidebar"
-    class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full
-           bg-white border-r border-gray-200 sm:translate-x-0"
+    class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 md:pt-[100px] transition-transform -translate-x-full
+           bg-[#007423] border-r border-gray-200 sm:translate-x-0"
     aria-label="Sidebar"
 >
-    <div class="h-full px-3 pb-4 overflow-y-auto bg-white">
+    <div class="h-full px-3 pb-4 overflow-y-auto bg-[#007423]">
         <ul class="space-y-2 font-medium">
+            {{-- Opción: Inicio --}}
             <li>
                 <a
                     href="/"
-                    class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
+                    class="flex items-center p-2 rounded-lg group
+                    {{ request()->is('admin/dashboard') ? 'bg-[#ffffff] text-[#007423]' : 'text-white hover:bg-[#ffffff] hover:text-[#007423]'}}"
                 >
                     <svg
-                        class="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                        class="w-5 h-5
+                        {{ request()->is('admin/dashboard') ? ' text-[#007423]' : 'w-5 h-5 text-white transition duration-75 group-hover:text-[#007423]' }}"
                         aria-hidden="true"
                         fill="currentColor"
                         viewBox="0 0 22 21"
@@ -167,57 +174,87 @@
                     <span class="ml-3">Inicio</span>
                 </a>
             </li>
+
+            {{-- Opción: Expedientes (solo visible si el usuario tiene el permiso 'admin-access') --}}
             <li>
                 @can('admin-access')
+                    <a
+                        href="/dashboard/expedientes"
+                        class="flex items-center p-2 rounded-lg group
+                        {{ request()->is('dashboard/expedientes') ? 'bg-[#ffffff] text-[#007423]' : 'text-white hover:bg-[#ffffff] hover:text-[#007423]' }}"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            class="w-5 h-5
+                            {{ request()->is('dashboard/expedientes') ? ' text-[#007423]' : 'w-5 h-5 text-white transition duration-75 group-hover:text-[#007423]' }}"
+                        >
+                            <path
+                                stroke="none"
+                                d="M0 0h24v24H0z"
+                                fill="none"
+                            />
+                            <path
+                                d="M17.997 4.17a3 3 0
+                                 0 1 2.003 2.83v12a3 3 0
+                                 0 1 -3 3h-10a3 3 0
+                                 0 1 -3 -3v-12a3 3 0
+                                 0 1 2.003 -2.83 4 4 0
+                                 0 0 3.997 3.83h4a4
+                                 4 0 0 0 3.98 -3.597zm
+                                 -2.997 10.83h-6a1 1 0 0 0
+                                 0 2h6a1 1 0 0 0 0 -2m0
+                                 -4h-6a1 1 0 0 0 0 2h6a1
+                                 1 0 0 0 0 -2m-1 -9a2 2 0
+                                 1 1 0 4h-4a2 2 0 1
+                                 1 0 -4z"
+                            />
+                        </svg>
+                        <span class="ml-3">Expedientes</span>
+                    </a>
+                @endcan
+
+
+            </li>
+
+            <li>
+                {{-- Opción: Expedientes Asignados (o "propios") --}}
                 <a
-                    href="/dashboard/expedientes"
-                    class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
+                    href="{{ route('expedientes.propios') }}"
+                    class="flex items-center p-2 rounded-lg group
+                    {{ request()->is('dashboard/expedientes/user') ? 'bg-[#ffffff] text-[#007423]' : 'text-white hover:bg-[#ffffff] hover:text-[#007423]' }}"
                 >
                     <svg
+                        class="w-5 h-5
+                            {{ request()->is('dashboard/expedientes/user') ? ' text-[#007423]' : 'w-5 h-5 text-white transition duration-75 group-hover:text-[#007423]' }}"
                         xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
                         fill="currentColor"
-                        class="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 56 56"
                     >
-                        <path stroke="none"
-                              d="M0 0h24v24H0z" fill="none"/>
                         <path
-                            d="M17.997 4.17a3 3 0
-                             0 1 2.003 2.83v12a3 3 0
-                             0 1 -3 3h-10a3 3 0
-                             0 1 -3 -3v-12a3 3 0
-                             0 1 2.003 -2.83 4 4 0
-                             0 0 3.997 3.83h4a4
-                             4 0 0 0 3.98 -3.597zm
-                             -2.997 10.83h-6a1 1 0 0 0
-                             0 2h6a1 1 0 0 0 0 -2m0
-                             -4h-6a1 1 0 0 0 0 2h6a1
-                             1 0 0 0 0 -2m-1 -9a2 2 0
-                             1 1 0 4h-4a2 2 0 1
-                             1 0 -4z"
+                            d="M42.624 45.003h1.3c4.54 0 6.81-2.314 6.81-6.92V16.838h-13.07c-2.291 0-3.592-1.3-3.592-3.593V0H22.634c-4.54 0-6.831 2.314-6.831 6.92V8h2.864c3.108 0 5.598.882 8.067 3.35L39.23 23.89c2.49 2.49 3.394 5.047 3.394 8.044Zm-4.519-30.92h11.57c-.131-.706-.594-1.323-1.365-2.094l-9.39-9.565c-.75-.771-1.41-1.256-2.094-1.366l.022 11.746c0 .904.353 1.279 1.257 1.279M11.505 56h21.29c4.54 0 6.831-2.314 6.831-6.92V31.339H23.67c-2.843 0-4.165-1.344-4.165-4.165V10.997h-8c-4.54 0-6.832 2.314-6.832 6.92V49.08c0 4.628 2.292 6.92 6.832 6.92m12.143-27.68h14.81c-.22-.86-.815-1.653-1.807-2.667l-11.46-11.658c-.97-.992-1.83-1.587-2.667-1.83v15.03q0 1.125 1.124 1.125"
                         />
                     </svg>
-                    <span class="ml-3">Expedientes</span>
+                    <span class="ml-3">Expedientes Asignados</span>
                 </a>
-                @endcan
-                    <a
-                        href="{{ route('expedientes.propios') }}"
-                        class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 56 56"><path fill="#6b7280" d="M42.624 45.003h1.3c4.54 0 6.81-2.314 6.81-6.92V16.838h-13.07c-2.291 0-3.592-1.3-3.592-3.593V0H22.634c-4.54 0-6.831 2.314-6.831 6.92V8h2.864c3.108 0 5.598.882 8.067 3.35L39.23 23.89c2.49 2.49 3.394 5.047 3.394 8.044Zm-4.519-30.92h11.57c-.131-.706-.594-1.323-1.365-2.094l-9.39-9.565c-.75-.771-1.41-1.256-2.094-1.366l.022 11.746c0 .904.353 1.279 1.257 1.279M11.505 56h21.29c4.54 0 6.831-2.314 6.831-6.92V31.339H23.67c-2.843 0-4.165-1.344-4.165-4.165V10.997h-8c-4.54 0-6.832 2.314-6.832 6.92V49.08c0 4.628 2.292 6.92 6.832 6.92m12.143-27.68h14.81c-.22-.86-.815-1.653-1.807-2.667l-11.46-11.658c-.97-.992-1.83-1.587-2.667-1.83v15.03q0 1.125 1.124 1.125"/></svg>
-                        <span class="ml-3">Expedientes Asignados</span>
-                    </a>
             </li>
+
+            {{-- Opciones visibles solo con permiso admin-access --}}
             @can('admin-access')
                 <li>
                     <a
                         href="/dashboard/areas"
-                        class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
+                        class="flex items-center p-2 rounded-lg group
+                        {{ request()->is('dashboard/areas') ? 'bg-[#ffffff] text-[#007423]' : 'text-white hover:bg-[#ffffff] hover:text-[#007423]' }}"
                     >
                         <svg
-                            class="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                            class="w-5 h-5
+                            {{ request()->is('dashboard/areas') ? ' text-[#007423]' : 'w-5 h-5 text-white transition duration-75 group-hover:text-[#007423]' }}"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor"
@@ -247,13 +284,16 @@
                         <span class="ml-3">Áreas</span>
                     </a>
                 </li>
+
                 <li>
                     <a
                         href="/dashboard/usuarios"
-                        class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
+                        class="flex items-center p-2 rounded-lg group
+                        {{ request()->is('dashboard/usuarios') ? 'bg-[#ffffff] text-[#007423]' : 'text-white hover:bg-[#ffffff] hover:text-[#007423]' }}"
                     >
                         <svg
-                            class="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                            class="w-5 h-5
+                            {{ request()->is('dashboard/usuarios') ? ' text-[#007423]' : 'w-5 h-5 text-white transition duration-75 group-hover:text-[#007423]' }}"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor"
@@ -285,12 +325,13 @@
     </div>
 </aside>
 
-<div class="p-8 sm:ml-64 mt-14">
+<div class="p-8 sm:ml-64 mt-20">
     @yield('content')
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Botón toggler de Sidebar (para móviles)
         const drawerToggleBtn = document.querySelector('[data-drawer-toggle="logo-sidebar"]');
         const sidebar = document.getElementById('logo-sidebar');
 
@@ -300,6 +341,7 @@
             });
         }
 
+        // Botón toggler de Dropdown Usuario
         const userDropdownBtn = document.querySelector('[data-dropdown-toggle="dropdown-user"]');
         const userDropdown = document.getElementById('dropdown-user');
 

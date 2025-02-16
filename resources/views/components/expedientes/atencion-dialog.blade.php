@@ -50,6 +50,7 @@
                         <label for="Documento_Adjunto" class="block mb-2 text-sm font-medium text-gray-900">
                             Subir Archivo
                         </label>
+                        </label>
                         <input
                             type="file"
                             id="Documento_Adjunto"
@@ -66,7 +67,7 @@
                         <button
                             id="modal-submit-button"
                             type="submit"
-                            class="mt-6 gap-3 px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800"
+                            class="mt-6 gap-3 px-5 py-3 text-base font-medium text-center text-white bg-[#007423] hover:bg-green-900 rounded-lg"
                         >
                             Agregar Seguimiento
                         </button>

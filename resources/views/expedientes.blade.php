@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
-    <main class="max-w-[1480px] w-auto m-auto px-5 pb-10">
+
+    <main class=" mt-20 max-w-[1480px] w-auto m-auto px-5 pb-10">
         <div class="border rounded-lg pb-6">
             <div class="bg-[#F7F7F7] py-3 px-5 rounded-tl-lg rounded-tr-lg border-b">
                 <h1 class="text-[24px] font-bold text-center ">Consulta Expediente</h1>
@@ -50,7 +51,7 @@
 
                 <button
                     type="submit"
-                    class="col-span-8 md:col-span-2 px-5 flex justify-center py-3 text-base font-medium text-center items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800"
+                    class="col-span-8 md:col-span-2 px-5 flex justify-center py-3 text-base font-medium text-center items-center text-white bg-[#007423] hover:bg-green-900 rounded-lg hover:bg-blue-800"
                 >
                     Buscar
                 </button>

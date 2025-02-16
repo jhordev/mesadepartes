@@ -60,3 +60,17 @@ table {
     display: inline-flex;
     gap: 3px;
 }
+
+.container-login{
+    background-image: url("/public/wave.svg");
+    height: calc(100vh - 192px);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+@media screen and (max-width: 768px) {
+    .container-login{
+        height: calc(100vh - 295.96px);
+        background-size: cover;
+    }
+}

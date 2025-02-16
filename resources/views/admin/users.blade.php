@@ -6,7 +6,7 @@
         <button
             type="button"
             onclick="openModal('{{ route('usuarios.store') }}', 'POST', 'Nuevo Usuario')"
-            class="gap-3 px-5 py-3 text-base font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800"
+            class="gap-3 px-5 py-3 text-base font-medium text-center inline-flex items-center text-white bg-[#007423] hover:bg-green-900 rounded-lg hover:bg-blue-800"
         >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                  viewBox="0 0 24 24" fill="currentColor"

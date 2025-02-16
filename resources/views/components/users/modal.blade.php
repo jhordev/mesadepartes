@@ -108,7 +108,7 @@
                         <button
                             id="modal-submit-button"
                             type="submit"
-                            class="mt-6 gap-3 px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800"
+                            class="mt-6 gap-3 px-5 py-3 text-base font-medium text-center text-white bg-[#007423] hover:bg-green-900 rounded-lg"
                         >
                             Agregar
                         </button>

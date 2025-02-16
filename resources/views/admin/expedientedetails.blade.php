@@ -45,7 +45,7 @@
             </span>
             @endif
 
-            <button onclick="openModal('modal')" type="button" class="px-10 py-3 h-fit text-base font-medium text-center inline-flex items-center justify-center text-white bg-green-700 rounded-lg hover:bg-green-800 dark:bg-green-600 dark:hover:bg-green-800 ">
+            <button onclick="openModal('modal')" type="button" class="px-10 py-3 h-fit text-base font-medium text-center inline-flex items-center justify-center text-white bg-[#007423] hover:bg-green-900 rounded-lg ">
                 <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-text-grammar"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 9a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M4 12v-5a3 3 0 1 1 6 0v5" /><path d="M4 9h6" /><path d="M20 6v6" /><path d="M4 16h12" /><path d="M4 20h6" /><path d="M14 20l2 2l5 -5" /></svg>
                 <span class="ml-3 hidden md:flex">Atender</span>
             </button>

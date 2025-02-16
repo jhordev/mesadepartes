@@ -36,7 +36,7 @@
 
                     <input type="hidden" id="ID_Creador" name="ID_Creador">
                     <div class="w-full">
-                        <button type="submit" id="modal-submit-button" class="mt-6 gap-3 px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800">
+                        <button type="submit" id="modal-submit-button" class="mt-6 gap-3 px-5 py-3 text-base font-medium text-center text-white bg-[#007423] hover:bg-green-900 rounded-lg">
                             Guardar
                         </button>
                     </div>

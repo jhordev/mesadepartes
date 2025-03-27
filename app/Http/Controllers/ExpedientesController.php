@@ -131,9 +131,9 @@ class ExpedientesController extends Controller
                     'nombre'              => 'required|string',
                     'apellido_paterno'    => 'required|string',
                     'apellido_materno'    => 'nullable|string',
-                    'natural_departamento' => 'nullable|string',
-                    'natural_provincia'   => 'nullable|string',
-                    'natural_distrito'    => 'nullable|string',
+                    'nombre_natural_departamento' => 'nullable|string',
+                    'nombre_natural_provincia'   => 'nullable|string',
+                    'nombre_natural_distrito'    => 'nullable|string',
                     'natural_direccion'   => 'nullable|string',
                     'email'               => 'nullable|string', // 'email' se valida arriba
                     'telefono'            => 'nullable|string', // 'telefono' se valida arriba
@@ -147,9 +147,9 @@ class ExpedientesController extends Controller
                     'Nombre'          => $personaNaturalData['nombre'],
                     'Apellido_Paterno'=> $personaNaturalData['apellido_paterno'],
                     'Apellido_Materno'=> $personaNaturalData['apellido_materno'] ?? null,
-                    'Departamento'    => $personaNaturalData['natural_departamento'] ?? null,
-                    'Provincia'       => $personaNaturalData['natural_provincia'] ?? null,
-                    'Distrito'        => $personaNaturalData['natural_distrito'] ?? null,
+                    'Departamento'    => $personaNaturalData['nombre_natural_departamento'] ?? null,
+                    'Provincia'       => $personaNaturalData['nombre_natural_provincia'] ?? null,
+                    'Distrito'        => $personaNaturalData['nombre_natural_distrito'] ?? null,
                     'Direccion'       => $personaNaturalData['natural_direccion'] ?? null,
                     'Email'           => $personaNaturalData['email'] ?? null,
                     'Telefono'        => $personaNaturalData['telefono'] ?? null,
@@ -160,9 +160,9 @@ class ExpedientesController extends Controller
                 $personaJuridicaData = $request->validate([
                     'ruc'               => 'required|string',
                     'nombre_entidad'    => 'required|string',
-                    'departamento_juridica' => 'nullable|string',
-                    'provincia_juridica'    => 'nullable|string',
-                    'distrito_juridica'     => 'nullable|string',
+                    'nombre_departamento_juridica' => 'nullable|string',
+                    'nombre_provincia_juridica'    => 'nullable|string',
+                    'nombre_distrito_juridica'     => 'nullable|string',
                     'direccion_juridica'    => 'nullable|string',
                 ]);
 
@@ -193,9 +193,9 @@ class ExpedientesController extends Controller
                     'ID_Expediente'    => $expediente->ID_Expediente,
                     'RUC'              => $personaJuridicaData['ruc'],
                     'Nombre_Entidad'   => $personaJuridicaData['nombre_entidad'],
-                    'Departamento'     => $personaJuridicaData['departamento_juridica'] ?? null,
-                    'Provincia'        => $personaJuridicaData['provincia_juridica'] ?? null,
-                    'Distrito'         => $personaJuridicaData['distrito_juridica'] ?? null,
+                    'Departamento'     => $personaJuridicaData['nombre_departamento_juridica'] ?? null,
+                    'Provincia'        => $personaJuridicaData['nombre_provincia_juridica'] ?? null,
+                    'Distrito'         => $personaJuridicaData['nombre_distrito_juridica'] ?? null,
                     'Direccion'        => $personaJuridicaData['direccion_juridica'] ?? null,
                     'ID_Representante' => $representante->ID,
                 ]);

@@ -64,140 +64,10 @@
 
                     <div>
                         {{-- Sección: persona natural --}}
-                        <section id="datosNatural" class="bg-colorGrayOpacity p-6 hidden grid grid-cols-6">
-                            <div class="mb-2 col-span-6 grid grid-cols-6 gap-2">
-                                <label class="font-bold col-span-6">
-                                    1.1. Tipo de documento de identidad del solicitante
-                                </label>
-                                <select
-                                    name="tipo_documento"
-                                    id="tipo_documento"
-                                    class="mb-4 col-span-6 md:col-span-3 h-[48px] border-2 border-colorBlack rounded-[5px] focus:border-yellow-300"
-                                >
-                                    <option value="">Selecciona tu documento</option>
-                                    <option value="DNI" {{ old('tipo_documento') == 'DNI' ? 'selected' : '' }}>DNI</option>
-                                    <option value="Carné de extranjería" {{ old('tipo_documento') == 'Carné de extranjería' ? 'selected' : '' }}>Carné de extranjería</option>
-                                    <option value="Pasaporte" {{ old('tipo_documento') == 'Pasaporte' ? 'selected' : '' }}>Pasaporte</option>
-                                    <option value="RUC 10" {{ old('tipo_documento') == 'RUC 10' ? 'selected' : '' }}>RUC 10 (persona natural)</option>
-                                </select>
-                                <!-- Error en tiempo real -->
-                                <span id="error_tipo_documento" class="text-red-500 text-sm col-span-6"></span>
-                            </div>
+  
+                        @include('components.home.persona-natural')
 
-                            <div class="mb-6 col-span-6 grid grid-cols-6 gap-2">
-                                <label class="font-bold col-span-6">Número de documento de identidad del solicitante</label>
-                                <input
-                                    type="text"
-                                    name="numero_documento"
-                                    id="numero_documento"
-                                    class="block col-span-6 md:col-span-3 h-[48px]
-                                       border-2 border-colorBlack rounded-[5px] px-4
-                                       focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                                    value="{{ old('numero_documento') }}"
-                                />
-                                <!-- Error en tiempo real -->
-                                <span id="error_numero_documento" class="text-red-500 text-sm col-span-6"></span>
-                            </div>
-
-                            <div class="col-span-6 grid grid-cols-6 mb-6">
-                                <label class="font-bold col-span-6">1.2. Nombres y apellidos del solicitante</label>
-                                <div class="col-span-6 grid grid-cols-6 gap-5">
-                                    <div class="mt-3 col-span-6 md:col-span-2 grid grid-cols-6 gap-2">
-                                        <label class="font-bold col-span-6">Nombre</label>
-                                        <input
-                                            type="text"
-                                            name="nombre"
-                                            id="nombre"
-                                            class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4
-                                               focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                                            value="{{ old('nombre') }}"
-                                        />
-                                        <span id="error_nombre" class="text-red-500 text-sm col-span-6"></span>
-                                    </div>
-                                    <div class="mt-3 col-span-6 md:col-span-2 grid grid-cols-6 gap-2">
-                                        <label class="font-bold col-span-6">Apellido paterno</label>
-                                        <input
-                                            type="text"
-                                            name="apellido_paterno"
-                                            id="apellido_paterno"
-                                            class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4
-                                               focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                                            value="{{ old('apellido_paterno') }}"
-                                        />
-                                        <span id="error_apellido_paterno" class="text-red-500 text-sm col-span-6"></span>
-                                    </div>
-                                    <div class="mt-3 col-span-6 md:col-span-2 grid grid-cols-6 gap-2">
-                                        <label class="font-bold col-span-6">Apellido materno</label>
-                                        <input
-                                            type="text"
-                                            name="apellido_materno"
-                                            id="apellido_materno"
-                                            class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4
-                                               focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                                            value="{{ old('apellido_materno') }}"
-                                        />
-                                        <span id="error_apellido_materno" class="text-red-500 text-sm col-span-6"></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-span-6 grid grid-cols-6 mb-6">
-                                <label class="font-bold col-span-6">1.3. Dirección actual</label>
-                                <div class="col-span-6 grid grid-cols-6 gap-5">
-                                    <div class="mt-3 col-span-6 md:col-span-2 grid grid-cols-6 gap-2">
-                                        <label class="font-bold col-span-6">Departamento</label>
-                                        <input
-                                            type="text"
-                                            name="natural_departamento"
-                                            id="natural_departamento"
-                                            class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4
-                                               focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                                            value="{{ old('natural_departamento') }}"
-                                        />
-                                        <span id="error_natural_departamento" class="text-red-500 text-sm col-span-6"></span>
-                                    </div>
-                                    <div class="mt-3 col-span-6 md:col-span-2 grid grid-cols-6 gap-2">
-                                        <label class="font-bold col-span-6">Provincia</label>
-                                        <input
-                                            type="text"
-                                            name="natural_provincia"
-                                            id="natural_provincia"
-                                            class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4
-                                               focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                                            value="{{ old('natural_provincia') }}"
-                                        />
-                                        <span id="error_natural_provincia" class="text-red-500 text-sm col-span-6"></span>
-                                    </div>
-                                    <div class="mt-3 col-span-6 md:col-span-2 grid grid-cols-6 gap-2">
-                                        <label class="font-bold col-span-6">Distrito</label>
-                                        <input
-                                            type="text"
-                                            name="natural_distrito"
-                                            id="natural_distrito"
-                                            class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4
-                                               focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                                            value="{{ old('natural_distrito') }}"
-                                        />
-                                        <span id="error_natural_distrito" class="text-red-500 text-sm col-span-6"></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-span-6 grid grid-cols-6 gap-2">
-                                <label class="font-bold col-span-6">1.4. Escribe la dirección</label>
-                                <input
-                                    type="text"
-                                    name="natural_direccion"
-                                    id="natural_direccion"
-                                    class="col-span-6 md:col-span-3 h-[48px] border-2 border-colorBlack rounded-[5px] px-4
-                                       focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                                    value="{{ old('natural_direccion') }}"
-                                />
-                                <span id="error_natural_direccion" class="text-red-500 text-sm col-span-6"></span>
-                            </div>
-                        </section>
-
-                        {{-- Sección: persona jurídica --}}
+                        {{-- Sección: persona jurídica 
                         <section id="datosJuridica" class="bg-colorGrayOpacity p-6 hidden grid grid-cols-6">
                             <div class="col-span-6 grid grid-cols-6 mb-12">
                                 <h2 class="font-bold text-[20px] mb-5 col-span-6">
@@ -369,7 +239,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </section>
+                        </section>--}}
+                        @include('components.home.persona-juridica')
 
                         {{-- Información de contacto común (Natural o Jurídica) --}}
                         <div id="infonatural" class="hidden grid grid-cols-6 mt-[32px]">
@@ -1228,4 +1099,5 @@
 
         });
     </script>
+
 @endsection

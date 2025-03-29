@@ -30,7 +30,7 @@
             <h2 class="text-[20px] font-bold mb-4">Información del solicitante</h2>
 
             {{-- Enviamos al método store() del ExpedientesController --}}
-            <form action="{{ route('expedientes.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('expedientes.store') }}" id="formulario" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="ml-5">
@@ -64,182 +64,11 @@
 
                     <div>
                         {{-- Sección: persona natural --}}
-  
+
                         @include('components.home.persona-natural')
 
-                        {{-- Sección: persona jurídica 
-                        <section id="datosJuridica" class="bg-colorGrayOpacity p-6 hidden grid grid-cols-6">
-                            <div class="col-span-6 grid grid-cols-6 mb-12">
-                                <h2 class="font-bold text-[20px] mb-5 col-span-6">
-                                    Información de la entidad, empresa o institución
-                                </h2>
-                                <div class="mb-6 col-span-6 grid grid-cols-6 gap-2">
-                                    <label class="font-bold col-span-6">1.1. Ingresa el número de RUC</label>
-                                    <input
-                                        type="text"
-                                        name="ruc"
-                                        id="ruc"
-                                        class="block col-span-6 md:col-span-3 h-[48px]
-                                           border-2 border-colorBlack rounded-[5px] px-4
-                                           focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                                        value="{{ old('ruc') }}"
-                                    />
-                                    <span id="error_ruc" class="text-red-500 text-sm col-span-6"></span>
-                                </div>
-                                <div class="mb-6 col-span-6 grid grid-cols-6 gap-2">
-                                    <label class="font-bold col-span-6">
-                                        1.2. Nombre de la entidad, empresa o institución
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="nombre_entidad"
-                                        id="nombre_entidad"
-                                        class="block col-span-6 md:col-span-3 h-[48px]
-                                           border-2 border-colorBlack rounded-[5px] px-4
-                                           focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                                        value="{{ old('nombre_entidad') }}"
-                                    />
-                                    <span id="error_nombre_entidad" class="text-red-500 text-sm col-span-6"></span>
-                                </div>
 
-                                <div class="col-span-6 grid grid-cols-6 mb-6">
-                                    <label class="font-bold col-span-6">
-                                        1.3. Dirección de la entidad, empresa o institución
-                                    </label>
-                                    <div class="col-span-6 grid grid-cols-6 gap-5">
-                                        <div class="mt-3 col-span-6 md:col-span-2 grid grid-cols-6 gap-2">
-                                            <label class="font-bold col-span-6">Departamento</label>
-                                            <input
-                                                type="text"
-                                                name="departamento_juridica"
-                                                id="departamento_juridica"
-                                                class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4
-                                                   focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                                                value="{{ old('departamento_juridica') }}"
-                                            />
-                                            <span id="error_departamento_juridica" class="text-red-500 text-sm col-span-6"></span>
-                                        </div>
-                                        <div class="mt-3 col-span-6 md:col-span-2 grid grid-cols-6 gap-2">
-                                            <label class="font-bold col-span-6">Provincia</label>
-                                            <input
-                                                type="text"
-                                                name="provincia_juridica"
-                                                id="provincia_juridica"
-                                                class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4
-                                                   focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                                                value="{{ old('provincia_juridica') }}"
-                                            />
-                                            <span id="error_provincia_juridica" class="text-red-500 text-sm col-span-6"></span>
-                                        </div>
-                                        <div class="mt-3 col-span-6 md:col-span-2 grid grid-cols-6 gap-2">
-                                            <label class="font-bold col-span-6">Distrito</label>
-                                            <input
-                                                type="text"
-                                                name="distrito_juridica"
-                                                id="distrito_juridica"
-                                                class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4
-                                                   focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                                                value="{{ old('distrito_juridica') }}"
-                                            />
-                                            <span id="error_distrito_juridica" class="text-red-500 text-sm col-span-6"></span>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="col-span-6 grid grid-cols-6 gap-2">
-                                    <label class="font-bold col-span-6">1.4. Escribe la dirección</label>
-                                    <input
-                                        type="text"
-                                        name="direccion_juridica"
-                                        id="direccion_juridica"
-                                        class="col-span-6 md:col-span-3 h-[48px]
-                                           border-2 border-colorBlack rounded-[5px] px-4
-                                           focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                                        value="{{ old('direccion_juridica') }}"
-                                    />
-                                    <span id="error_direccion_juridica" class="text-red-500 text-sm col-span-6"></span>
-                                </div>
-                            </div>
-
-                            <div class="col-span-6 grid grid-cols-6">
-                                <h2 class="font-bold text-[20px] mb-5 col-span-6">Información del representante legal</h2>
-                                <div class="mb-2 col-span-6 grid grid-cols-6 gap-2">
-                                    <label class="font-bold col-span-6">
-                                        1.5. Tipo de documento de identidad del representante legal
-                                    </label>
-                                    <select
-                                        name="rep_tipo_documento"
-                                        id="rep_tipo_documento"
-                                        class="mb-4 col-span-6 md:col-span-3 h-[48px] border-2
-                                           border-colorBlack rounded-[5px] focus:border-yellow-300"
-                                    >
-                                        <option value="">Selecciona tu documento</option>
-                                        <option value="DNI" {{ old('rep_tipo_documento') == 'DNI' ? 'selected' : '' }}>DNI</option>
-                                        <option value="Carné de extranjería" {{ old('rep_tipo_documento') == 'Carné de extranjería' ? 'selected' : '' }}>Carné de extranjería</option>
-                                        <option value="Pasaporte" {{ old('rep_tipo_documento') == 'Pasaporte' ? 'selected' : '' }}>Pasaporte</option>
-                                        <option value="RUC 10" {{ old('rep_tipo_documento') == 'RUC 10' ? 'selected' : '' }}>RUC 10 (persona natural)</option>
-                                    </select>
-                                    <span id="error_rep_tipo_documento" class="text-red-500 text-sm col-span-6"></span>
-                                </div>
-                                <div class="mb-6 col-span-6 grid grid-cols-6 gap-2">
-                                    <label class="font-bold col-span-6">Número de documento de identidad</label>
-                                    <input
-                                        type="text"
-                                        name="rep_numero_documento"
-                                        id="rep_numero_documento"
-                                        class="block col-span-6 md:col-span-3 h-[48px]
-                                           border-2 border-colorBlack rounded-[5px] px-4
-                                           focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                                        value="{{ old('rep_numero_documento') }}"
-                                    />
-                                    <span id="error_rep_numero_documento" class="text-red-500 text-sm col-span-6"></span>
-                                </div>
-
-                                <div class="col-span-6 grid grid-cols-6 mb-6">
-                                    <label class="font-bold col-span-6">
-                                        1.6. Nombres y apellidos del representante legal que realiza el trámite
-                                    </label>
-                                    <div class="col-span-6 grid grid-cols-6 gap-5">
-                                        <div class="mt-3 col-span-6 md:col-span-2 grid grid-cols-6 gap-2">
-                                            <label class="font-bold col-span-6">Nombre</label>
-                                            <input
-                                                type="text"
-                                                name="rep_nombre"
-                                                id="rep_nombre"
-                                                class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4
-                                                   focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                                                value="{{ old('rep_nombre') }}"
-                                            />
-                                            <span id="error_rep_nombre" class="text-red-500 text-sm col-span-6"></span>
-                                        </div>
-                                        <div class="mt-3 col-span-6 md:col-span-2 grid grid-cols-6 gap-2">
-                                            <label class="font-bold col-span-6">Apellido paterno</label>
-                                            <input
-                                                type="text"
-                                                name="rep_apellido_paterno"
-                                                id="rep_apellido_paterno"
-                                                class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4
-                                                   focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                                                value="{{ old('rep_apellido_paterno') }}"
-                                            />
-                                            <span id="error_rep_apellido_paterno" class="text-red-500 text-sm col-span-6"></span>
-                                        </div>
-                                        <div class="mt-3 col-span-6 md:col-span-2 grid grid-cols-6 gap-2">
-                                            <label class="font-bold col-span-6">Apellido materno</label>
-                                            <input
-                                                type="text"
-                                                name="rep_apellido_materno"
-                                                id="rep_apellido_materno"
-                                                class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4
-                                                   focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                                                value="{{ old('rep_apellido_materno') }}"
-                                            />
-                                            <span id="error_rep_apellido_materno" class="text-red-500 text-sm col-span-6"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>--}}
                         @include('components.home.persona-juridica')
 
                         {{-- Información de contacto común (Natural o Jurídica) --}}
@@ -641,163 +470,122 @@
 
     {{-- Script de validaciones en tiempo real (mostrando mensajes bajo cada input) --}}
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // ---
-            // 1. Validación: Tipo de documento + Número de documento (Persona Natural)
-            // ---
+        document.addEventListener('DOMContentLoaded', function () {
             const tipoDoc = document.getElementById('tipo_documento');
             const numDoc = document.getElementById('numero_documento');
             const errorNumDoc = document.getElementById('error_numero_documento');
 
+            const repTipoDoc = document.getElementById('rep_tipo_documento');
+            const repNumDoc = document.getElementById('rep_numero_documento');
+            const errorRepNumDoc = document.getElementById('error_rep_numero_documento');
+
+            const form = document.getElementById('formulario'); // Asegúrate de tener este ID en el <form>
+
             function getRequiredLengthFor(type) {
-                switch(type) {
-                    case 'DNI':                  return 8;
+                switch (type) {
+                    case 'DNI': return 8;
                     case 'Carné de extranjería': return 9;
-                    case 'Pasaporte':            return 7;
-                    case 'RUC 10':               return 10;
-                    default:                     return null;
+                    case 'Pasaporte': return 7;
+                    case 'RUC 10': return 10;
+                    default: return null;
                 }
             }
 
-            function validateNumeroDocumento() {
-                errorNumDoc.textContent = '';
-                const valor = numDoc.value.trim();
-                const docType = tipoDoc.value;
+            function validarCampoDocumento(input, tipoInput, errorLabel) {
+                const valor = input.value.trim();
+                const docType = tipoInput.value;
                 const requiredLen = getRequiredLengthFor(docType);
+                errorLabel.textContent = '';
 
-                // Campo requerido
                 if (!valor) {
-                    errorNumDoc.textContent = 'Este campo es obligatorio';
-                    return;
+                    errorLabel.textContent = 'Este campo es obligatorio';
+                    input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return false;
                 }
-                // Solo números
                 if (!/^[0-9]+$/.test(valor)) {
-                    errorNumDoc.textContent = 'Solo se permiten números';
-                    return;
+                    errorLabel.textContent = 'Solo se permiten números';
+                    input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return false;
                 }
-                // Longitud específica
                 if (requiredLen && valor.length !== requiredLen) {
-                    switch(docType) {
-                        case 'DNI':
-                            errorNumDoc.textContent = 'El número de DNI debe tener 8 dígitos';
-                            break;
-                        case 'Carné de extranjería':
-                            errorNumDoc.textContent = 'El carné de extranjería debe tener 9 dígitos';
-                            break;
-                        case 'Pasaporte':
-                            errorNumDoc.textContent = 'El pasaporte debe tener 7 dígitos';
-                            break;
-                        case 'RUC 10':
-                            errorNumDoc.textContent = 'El RUC debe tener 10 dígitos';
-                            break;
+                    switch (docType) {
+                        case 'DNI': errorLabel.textContent = 'El número de DNI debe tener 8 dígitos'; break;
+                        case 'Carné de extranjería': errorLabel.textContent = 'El carné de extranjería debe tener 9 dígitos'; break;
+                        case 'Pasaporte': errorLabel.textContent = 'El pasaporte debe tener 7 dígitos'; break;
+                        case 'RUC 10': errorLabel.textContent = 'El RUC debe tener 10 dígitos'; break;
+                    }
+                    input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return false;
+                }
+                return true;
+            }
+
+            numDoc.addEventListener('input', function () {
+                this.value = this.value.replace(/\D/g, '');
+                validarCampoDocumento(numDoc, tipoDoc, errorNumDoc);
+            });
+            tipoDoc.addEventListener('change', () => validarCampoDocumento(numDoc, tipoDoc, errorNumDoc));
+
+            if (repNumDoc && repTipoDoc) {
+                repNumDoc.addEventListener('input', function () {
+                    this.value = this.value.replace(/\D/g, '');
+                    validarCampoDocumento(repNumDoc, repTipoDoc, errorRepNumDoc);
+                });
+                repTipoDoc.addEventListener('change', () => validarCampoDocumento(repNumDoc, repTipoDoc, errorRepNumDoc));
+            }
+
+            // -------- VALIDACIÓN ANTES DE ENVIAR --------
+            form.addEventListener('submit', function (e) {
+                const visibleNatural = tipoDoc && tipoDoc.offsetParent !== null;
+                const visibleJuridica = repTipoDoc && repTipoDoc.offsetParent !== null;
+
+                let esValido = true;
+
+                if (visibleNatural) {
+                    if (!validarCampoDocumento(numDoc, tipoDoc, errorNumDoc)) {
+                        esValido = false;
                     }
                 }
-            }
 
-            // Forzar a que solo se puedan escribir dígitos en tiempo real
-            numDoc.addEventListener('input', function(e) {
-                // Eliminar todo lo que no sea dígito
-                this.value = this.value.replace(/\D/g, '');
-                validateNumeroDocumento();
+                if (visibleJuridica) {
+                    if (!validarCampoDocumento(repNumDoc, repTipoDoc, errorRepNumDoc)) {
+                        esValido = false;
+                    }
+                }
+
+                if (!esValido) {
+                    e.preventDefault();
+                }
             });
-            tipoDoc.addEventListener('change', validateNumeroDocumento);
 
-            // ---
-            // 2. Validación Teléfono (Persona Natural)
-            // ---
+            // -------- VALIDACIONES EXTRA --------
             const telefono = document.getElementById('telefono');
             const errorTelefono = document.getElementById('error_telefono');
             if (telefono) {
-                telefono.addEventListener('input', function() {
+                telefono.addEventListener('input', function () {
                     errorTelefono.textContent = '';
-                    // Forzar solo dígitos
                     this.value = this.value.replace(/\D/g, '');
-                    // Si no está vacío y no son 9 dígitos => mostrar error
                     if (this.value && this.value.length !== 9) {
                         errorTelefono.textContent = 'El teléfono debe tener 9 dígitos';
                     }
                 });
             }
 
-            // ---
-            // 3. Validación Email (Persona Natural) - Debe ser @gmail.com
-            // ---
             const email = document.getElementById('email');
             const errorEmail = document.getElementById('error_email');
             if (email) {
-                email.addEventListener('input', function() {
+                email.addEventListener('input', function () {
                     errorEmail.textContent = '';
-                    // Validar formato genérico de email (algo@dominio.extensión)
                     if (this.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value)) {
                         errorEmail.textContent = 'Ingrese un correo electrónico válido';
                     }
                 });
             }
 
-            // ---
-            // 4. Validación: Tipo documento + Número doc del representante (Persona Jurídica)
-            // ---
-            const repTipoDoc = document.getElementById('rep_tipo_documento');
-            const repNumDoc = document.getElementById('rep_numero_documento');
-            const errorRepNumDoc = document.getElementById('error_rep_numero_documento');
-
-            function getRequiredLengthRep(type) {
-                switch(type) {
-                    case 'DNI':                  return 8;
-                    case 'Carné de extranjería': return 9;
-                    case 'Pasaporte':            return 7;
-                    case 'RUC 10':               return 10;
-                    default:                     return null;
-                }
-            }
-
-            function validateRepNumeroDocumento() {
-                errorRepNumDoc.textContent = '';
-                const valor = repNumDoc.value.trim();
-                const docType = repTipoDoc.value;
-                const requiredLen = getRequiredLengthRep(docType);
-
-                if (!valor) {
-                    errorRepNumDoc.textContent = 'Este campo es obligatorio';
-                    return;
-                }
-                if (!/^[0-9]+$/.test(valor)) {
-                    errorRepNumDoc.textContent = 'Solo se permiten números';
-                    return;
-                }
-                if (requiredLen && valor.length !== requiredLen) {
-                    switch(docType) {
-                        case 'DNI':
-                            errorRepNumDoc.textContent = 'El número de DNI debe tener 8 dígitos';
-                            break;
-                        case 'Carné de extranjería':
-                            errorRepNumDoc.textContent = 'El carné de extranjería debe tener 9 dígitos';
-                            break;
-                        case 'Pasaporte':
-                            errorRepNumDoc.textContent = 'El pasaporte debe tener 7 dígitos';
-                            break;
-                        case 'RUC 10':
-                            errorRepNumDoc.textContent = 'El RUC debe tener 10 dígitos';
-                            break;
-                    }
-                }
-            }
-
-            if (repNumDoc && repTipoDoc) {
-                repNumDoc.addEventListener('input', function() {
-                    this.value = this.value.replace(/\D/g, '');
-                    validateRepNumeroDocumento();
-                });
-                repTipoDoc.addEventListener('change', validateRepNumeroDocumento);
-            }
-
-            // ---
-            // 5. Validación Teléfono del representante
-            // ---
             const repTelefono = document.getElementById('rep_telefono');
             const errorRepTelefono = document.getElementById('error_rep_telefono');
             if (repTelefono) {
-                repTelefono.addEventListener('input', function() {
+                repTelefono.addEventListener('input', function () {
                     errorRepTelefono.textContent = '';
                     this.value = this.value.replace(/\D/g, '');
                     if (this.value && this.value.length !== 9) {
@@ -806,13 +594,10 @@
                 });
             }
 
-            // ---
-            // 6. Validación Email representante (@gmail.com)
-            // ---
             const repEmail = document.getElementById('rep_email');
             const errorRepEmail = document.getElementById('error_rep_email');
             if (repEmail) {
-                repEmail.addEventListener('input', function() {
+                repEmail.addEventListener('input', function () {
                     errorRepEmail.textContent = '';
                     if (this.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value)) {
                         errorRepEmail.textContent = 'Ingrese un correo electrónico válido';
@@ -820,284 +605,52 @@
                 });
             }
 
-            // ---
-            // 6. Validación RUC
-            // ---
             const rucInput = document.getElementById('ruc');
-            const errorRuc  = document.getElementById('error_ruc');
-
+            const errorRuc = document.getElementById('error_ruc');
             if (rucInput) {
-                rucInput.addEventListener('input', function() {
-                    // Limpiamos cualquier error previo
+                rucInput.addEventListener('input', function () {
                     errorRuc.textContent = '';
-
-                    // Forzamos solo dígitos (eliminando letras, símbolos, espacios, etc.)
                     this.value = this.value.replace(/\D/g, '');
-
-                    // Si el campo queda vacío, mostrar el error
                     if (!this.value) {
                         errorRuc.textContent = 'Este campo es obligatorio';
                     }
                 });
             }
 
-            // ---
-            // 7. Validación nombre
-            // ---
-            const nombreInput = document.getElementById('nombre');
-            const errorNombre  = document.getElementById('error_nombre');
+            const bindObligatorio = (idCampo, idError) => {
+                const campo = document.getElementById(idCampo);
+                const error = document.getElementById(idError);
+                if (campo && error) {
+                    campo.addEventListener('input', function () {
+                        error.textContent = '';
+                        if (!this.value) {
+                            error.textContent = 'Este campo es obligatorio';
+                        }
+                    });
+                }
+            };
 
-            if (nombreInput) {
-                nombreInput.addEventListener('input', function() {
-                    // Limpiamos cualquier error previo
-                    errorNombre.textContent = '';
-                    // Si el campo queda vacío, mostrar el error
-                    if (!this.value) {
-                        errorNombre.textContent = 'Este campo es obligatorio';
-                    }
-                });
-            }
+            const campos = [
+                ['nombre', 'error_nombre'],
+                ['apellido_paterno', 'error_apellido_paterno'],
+                ['apellido_materno', 'error_apellido_materno'],
+                ['natural_departamento', 'error_natural_departamento'],
+                ['natural_provincia', 'error_natural_provincia'],
+                ['natural_distrito', 'error_natural_distrito'],
+                ['natural_direccion', 'error_natural_direccion'],
+                ['nombre_entidad', 'error_nombre_entidad'],
+                ['departamento_juridica', 'error_departamento_juridica'],
+                ['provincia_juridica', 'error_provincia_juridica'],
+                ['distrito_juridica', 'error_distrito_juridica'],
+                ['direccion_juridica', 'error_direccion_juridica'],
+                ['rep_nombre', 'error_rep_nombre'],
+                ['rep_apellido_paterno', 'error_rep_apellido_paterno'],
+                ['rep_apellido_materno', 'error_rep_apellido_materno'],
+            ];
 
-            // ---
-            // 7. Validación apellido paterno
-            // ---
-            const apellidoPaterno = document.getElementById('apellido_paterno');
-            const errorApellidoPaterno  = document.getElementById('error_apellido_paterno');
-
-            if (apellidoPaterno) {
-                apellidoPaterno.addEventListener('input', function() {
-                    // Limpiamos cualquier error previo
-                    errorApellidoPaterno.textContent = '';
-                    // Si el campo queda vacío, mostrar el error
-                    if (!this.value) {
-                        errorApellidoPaterno.textContent = 'Este campo es obligatorio';
-                    }
-                });
-            }
-            // ---
-            // 7. Validación apellido paterno
-            // ---
-            const apellidoMaterno = document.getElementById('apellido_materno');
-            const errorApellidoMaterno  = document.getElementById('error_apellido_materno');
-
-            if (apellidoMaterno) {
-                apellidoMaterno.addEventListener('input', function() {
-                    // Limpiamos cualquier error previo
-                    errorApellidoMaterno.textContent = '';
-                    // Si el campo queda vacío, mostrar el error
-                    if (!this.value) {
-                        errorApellidoMaterno.textContent = 'Este campo es obligatorio';
-                    }
-                });
-            }
-            // ---
-            // 7. Departamento
-            // ---
-            const naturalDepartamento = document.getElementById('natural_departamento');
-            const errorNaturalDepartamento  = document.getElementById('error_natural_departamento');
-
-            if (naturalDepartamento) {
-                naturalDepartamento.addEventListener('input', function() {
-                    // Limpiamos cualquier error previo
-                    errorNaturalDepartamento.textContent = '';
-                    // Si el campo queda vacío, mostrar el error
-                    if (!this.value) {
-                        errorNaturalDepartamento.textContent = 'Este campo es obligatorio';
-                    }
-                });
-            }
-
-            // ---
-            // 7. Provincia
-            // ---
-            const naturalProvincia = document.getElementById('natural_provincia');
-            const errorNaturalProvincia  = document.getElementById('error_natural_provincia');
-
-            if (naturalProvincia) {
-                naturalProvincia.addEventListener('input', function() {
-                    // Limpiamos cualquier error previo
-                    errorNaturalProvincia.textContent = '';
-                    // Si el campo queda vacío, mostrar el error
-                    if (!this.value) {
-                        errorNaturalProvincia.textContent = 'Este campo es obligatorio';
-                    }
-                });
-            }
-
-            // ---
-            // 7. Distrito
-            // ---
-            const naturalDistrito = document.getElementById('natural_distrito');
-            const errorNaturalDistrito  = document.getElementById('error_natural_distrito');
-
-            if (naturalDistrito) {
-                naturalDistrito.addEventListener('input', function() {
-                    // Limpiamos cualquier error previo
-                    errorNaturalDistrito.textContent = '';
-                    // Si el campo queda vacío, mostrar el error
-                    if (!this.value) {
-                        errorNaturalDistrito.textContent = 'Este campo es obligatorio';
-                    }
-                });
-            }
-
-            // ---
-            // 7. dirección
-            // ---
-            const naturalDirecccion = document.getElementById('natural_direccion');
-            const errorNaturaldescripcion  = document.getElementById('error_natural_direccion');
-
-            if (naturalDirecccion) {
-                naturalDirecccion.addEventListener('input', function() {
-                    // Limpiamos cualquier error previo
-                    errorNaturaldescripcion.textContent = '';
-                    // Si el campo queda vacío, mostrar el error
-                    if (!this.value) {
-                        errorNaturaldescripcion.textContent = 'Este campo es obligatorio';
-                    }
-                });
-            }
-
-            // ---
-            // 7. Nombre Entidad
-            // ---
-            const nombreEntidad = document.getElementById('nombre_entidad');
-            const errorNombreEntidad  = document.getElementById('error_nombre_entidad');
-
-            if (nombreEntidad) {
-                nombreEntidad.addEventListener('input', function() {
-                    // Limpiamos cualquier error previo
-                    errorNombreEntidad.textContent = '';
-                    // Si el campo queda vacío, mostrar el error
-                    if (!this.value) {
-                        errorNombreEntidad.textContent = 'Este campo es obligatorio';
-                    }
-                });
-            }
-
-            // ---
-            // 7. Departamento jurídica
-            // ---
-            const juridicaDepartamento = document.getElementById('departamento_juridica');
-            const errorJuridicaDepartamento  = document.getElementById('error_departamento_juridica');
-
-            if (juridicaDepartamento) {
-                juridicaDepartamento.addEventListener('input', function() {
-                    // Limpiamos cualquier error previo
-                    errorJuridicaDepartamento.textContent = '';
-                    // Si el campo queda vacío, mostrar el error
-                    if (!this.value) {
-                        errorJuridicaDepartamento.textContent = 'Este campo es obligatorio';
-                    }
-                });
-            }
-
-            // ---
-            // 7. Provincia jurídica
-            // ---
-            const juridicaProvincia = document.getElementById('provincia_juridica');
-            const errorJuridicaProvincia  = document.getElementById('error_provincia_juridica');
-
-            if (juridicaProvincia) {
-                juridicaProvincia.addEventListener('input', function() {
-                    // Limpiamos cualquier error previo
-                    errorJuridicaProvincia.textContent = '';
-                    // Si el campo queda vacío, mostrar el error
-                    if (!this.value) {
-                        errorJuridicaProvincia.textContent = 'Este campo es obligatorio';
-                    }
-                });
-            }
-
-            // ---
-            // 7. Distrito jurídica
-            // ---
-            const juridicaDistrito = document.getElementById('distrito_juridica');
-            const errorJuridicaDistrito  = document.getElementById('error_distrito_juridica');
-
-            if (juridicaDistrito) {
-                juridicaDistrito.addEventListener('input', function() {
-                    // Limpiamos cualquier error previo
-                    errorJuridicaDistrito.textContent = '';
-                    // Si el campo queda vacío, mostrar el error
-                    if (!this.value) {
-                        errorJuridicaDistrito.textContent = 'Este campo es obligatorio';
-                    }
-                });
-            }
-
-            // ---
-            // 7. Dirección jurídica
-            // ---
-            const juridicaDireccion = document.getElementById('direccion_juridica');
-            const errorJuridicaDireccion  = document.getElementById('error_direccion_juridica');
-
-            if (juridicaDireccion) {
-                juridicaDireccion.addEventListener('input', function() {
-                    // Limpiamos cualquier error previo
-                    errorJuridicaDireccion.textContent = '';
-                    // Si el campo queda vacío, mostrar el error
-                    if (!this.value) {
-                        errorJuridicaDireccion.textContent = 'Este campo es obligatorio';
-                    }
-                });
-            }
-
-            // ---
-            // 7. Nombre Representante
-            // ---
-            const nombreRepresentante = document.getElementById('rep_nombre');
-            const errorNombrerepresentate  = document.getElementById('error_rep_nombre');
-
-            if (nombreRepresentante) {
-                nombreRepresentante.addEventListener('input', function() {
-                    // Limpiamos cualquier error previo
-                    errorNombrerepresentate.textContent = '';
-                    // Si el campo queda vacío, mostrar el error
-                    if (!this.value) {
-                        errorNombrerepresentate.textContent = 'Este campo es obligatorio';
-                    }
-                });
-            }
-
-            // ---
-            // 7. Apellido Paterno
-            // ---
-            const apellidoPaternoRep = document.getElementById('rep_apellido_paterno');
-            const errorApellidoPaternoRep  = document.getElementById('error_rep_apellido_paterno');
-
-            if (apellidoPaternoRep) {
-                apellidoPaternoRep.addEventListener('input', function() {
-                    // Limpiamos cualquier error previo
-                    errorApellidoPaternoRep.textContent = '';
-                    // Si el campo queda vacío, mostrar el error
-                    if (!this.value) {
-                        errorApellidoPaternoRep.textContent = 'Este campo es obligatorio';
-                    }
-                });
-            }
-
-            // ---
-            // 7. Apellido Materno
-            // ---
-            const apellidoMaternoRep = document.getElementById('rep_apellido_materno');
-            const errorApellidoMaternoRep  = document.getElementById('error_rep_apellido_materno');
-
-            if (apellidoMaternoRep) {
-                apellidoMaternoRep.addEventListener('input', function() {
-                    // Limpiamos cualquier error previo
-                    errorApellidoMaternoRep.textContent = '';
-                    // Si el campo queda vacío, mostrar el error
-                    if (!this.value) {
-                        errorApellidoMaternoRep.textContent = 'Este campo es obligatorio';
-                    }
-                });
-            }
-
-
-
-
+            campos.forEach(([campo, error]) => bindObligatorio(campo, error));
         });
     </script>
+
 
 @endsection

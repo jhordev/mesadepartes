@@ -1,27 +1,36 @@
 <section id="datosNatural" class="bg-colorGrayOpacity p-6 hidden grid grid-cols-6">
     <div class="mb-2 col-span-6 grid grid-cols-6 gap-2">
-        <label class="font-bold col-span-6">1.1. Tipo de documento de identidad del solicitante</label>
+        <label class="font-bold col-span-6">
+            1.1. Tipo de documento de identidad del solicitante
+        </label>
         <select
-            name="tipo_documento_natural"
-            id="large"
+            name="tipo_documento"
+            id="tipo_documento"
             class="mb-4 col-span-6 md:col-span-3 h-[48px] border-2 border-colorBlack rounded-[5px] focus:border-yellow-300"
         >
             <option value="">Selecciona tu documento</option>
-            <option value="DNI" {{ old('tipo_documento_natural') == 'DNI' ? 'selected' : '' }}>DNI</option>
-            <option value="Carné de extranjería" {{ old('tipo_documento_natural') == 'Carné de extranjería' ? 'selected' : '' }}>Carné de extranjería</option>
-            <option value="Pasaporte" {{ old('tipo_documento_natural') == 'Pasaporte' ? 'selected' : '' }}>Pasaporte</option>
-            <option value="RUC 10" {{ old('tipo_documento_natural') == 'RUC 10' ? 'selected' : '' }}>RUC 10 (de persona natural)</option>
+            <option value="DNI" {{ old('tipo_documento') == 'DNI' ? 'selected' : '' }}>DNI</option>
+            <option value="Carné de extranjería" {{ old('tipo_documento') == 'Carné de extranjería' ? 'selected' : '' }}>Carné de extranjería</option>
+            <option value="Pasaporte" {{ old('tipo_documento') == 'Pasaporte' ? 'selected' : '' }}>Pasaporte</option>
+            <option value="RUC 10" {{ old('tipo_documento') == 'RUC 10' ? 'selected' : '' }}>RUC 10 (persona natural)</option>
         </select>
+        <!-- Error en tiempo real -->
+        <span id="error_tipo_documento" class="text-red-500 text-sm col-span-6"></span>
     </div>
 
     <div class="mb-6 col-span-6 grid grid-cols-6 gap-2">
         <label class="font-bold col-span-6">Número de documento de identidad del solicitante</label>
         <input
             type="text"
-            name="numero_documento_natural"
-            class="block col-span-6 md:col-span-3 h-[48px] border-2 border-colorBlack rounded-[5px] px-4 focus:focus:outline-none focus:border-yellow-300 focus:rounded-none"
-            value="{{ old('numero_documento_natural') }}"
+            name="numero_documento"
+            id="numero_documento"
+            class="block col-span-6 md:col-span-3 h-[48px]
+                                       border-2 border-colorBlack rounded-[5px] px-4
+                                       focus:outline-none focus:border-yellow-300 focus:rounded-none"
+            value="{{ old('numero_documento') }}"
         />
+        <!-- Error en tiempo real -->
+        <span id="error_numero_documento" class="text-red-500 text-sm col-span-6"></span>
     </div>
 
     <div class="col-span-6 grid grid-cols-6 mb-6">
@@ -31,28 +40,37 @@
                 <label class="font-bold col-span-6">Nombre</label>
                 <input
                     type="text"
-                    name="nombre_natural"
-                    class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4 focus:focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                    value="{{ old('nombre_natural') }}"
+                    name="nombre"
+                    id="nombre"
+                    class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4
+                                               focus:outline-none focus:border-yellow-300 focus:rounded-none"
+                    value="{{ old('nombre') }}"
                 />
+                <span id="error_nombre" class="text-red-500 text-sm col-span-6"></span>
             </div>
             <div class="mt-3 col-span-6 md:col-span-2 grid grid-cols-6 gap-2">
                 <label class="font-bold col-span-6">Apellido paterno</label>
                 <input
                     type="text"
-                    name="apellido_paterno_natural"
-                    class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4 focus:focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                    value="{{ old('apellido_paterno_natural') }}"
+                    name="apellido_paterno"
+                    id="apellido_paterno"
+                    class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4
+                                               focus:outline-none focus:border-yellow-300 focus:rounded-none"
+                    value="{{ old('apellido_paterno') }}"
                 />
+                <span id="error_apellido_paterno" class="text-red-500 text-sm col-span-6"></span>
             </div>
             <div class="mt-3 col-span-6 md:col-span-2 grid grid-cols-6 gap-2">
                 <label class="font-bold col-span-6">Apellido materno</label>
                 <input
                     type="text"
-                    name="apellido_materno_natural"
-                    class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4 focus:focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                    value="{{ old('apellido_materno_natural') }}"
+                    name="apellido_materno"
+                    id="apellido_materno"
+                    class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4
+                                               focus:outline-none focus:border-yellow-300 focus:rounded-none"
+                    value="{{ old('apellido_materno') }}"
                 />
+                <span id="error_apellido_materno" class="text-red-500 text-sm col-span-6"></span>
             </div>
         </div>
     </div>
@@ -62,30 +80,30 @@
         <div class="col-span-6 grid grid-cols-6 gap-5">
             <div class="mt-3 col-span-6 md:col-span-2 grid grid-cols-6 gap-2">
                 <label class="font-bold col-span-6">Departamento</label>
-                <input
-                    type="text"
-                    name="departamento_natural"
-                    class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4 focus:focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                    value="{{ old('departamento_natural') }}"
-                />
+                <select name="natural_departamento" id="natural_departamento" class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4
+                                               focus:outline-none focus:border-yellow-300 focus:rounded-none">
+                    <option value="" >Seleccionar Departamento</option>
+                </select>
+                <input type="hidden" name="nombre_departamento_natural" id="nombre_departamento_natural" />
+                <span id="error_natural_departamento" class="text-red-500 text-sm col-span-6"></span>
             </div>
             <div class="mt-3 col-span-6 md:col-span-2 grid grid-cols-6 gap-2">
                 <label class="font-bold col-span-6">Provincia</label>
-                <input
-                    type="text"
-                    name="provincia_natural"
-                    class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4 focus:focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                    value="{{ old('provincia_natural') }}"
-                />
+                <select name="natural_provincia" id="natural_provincia" class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4
+                                               focus:outline-none focus:border-yellow-300 focus:rounded-none">
+                    <option value="" >Seleccionar Provincia</option>
+                </select>
+                <input type="hidden" name="nombre_provincia_natural" id="nombre_provincia_natural" />
+                <span id="error_natural_provincia" class="text-red-500 text-sm col-span-6"></span>
             </div>
             <div class="mt-3 col-span-6 md:col-span-2 grid grid-cols-6 gap-2">
                 <label class="font-bold col-span-6">Distrito</label>
-                <input
-                    type="text"
-                    name="distrito_natural"
-                    class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4 focus:focus:outline-none focus:border-yellow-300 focus:rounded-none"
-                    value="{{ old('distrito_natural') }}"
-                />
+                <select name="natural_distrito" id="natural_distrito" class="col-span-6 h-[48px] border-2 border-colorBlack rounded-[5px] px-4
+                                               focus:outline-none focus:border-yellow-300 focus:rounded-none">
+                    <option value="" >Seleccionar Distrito</option>
+                </select>
+                <input type="hidden" name="nombre_distrito_natural" id="nombre_distrito_natural" />
+                <span id="error_natural_distrito" class="text-red-500 text-sm col-span-6"></span>
             </div>
         </div>
     </div>
@@ -94,9 +112,127 @@
         <label class="font-bold col-span-6">1.4. Escribe la dirección</label>
         <input
             type="text"
-            name="direccion_natural"
-            class="col-span-6 md:col-span-3 h-[48px] border-2 border-colorBlack rounded-[5px] px-4 focus:focus:outline-none focus:border-yellow-300 focus:rounded-none"
-            value="{{ old('direccion_natural') }}"
+            name="natural_direccion"
+            id="natural_direccion"
+            class="col-span-6 md:col-span-3 h-[48px] border-2 border-colorBlack rounded-[5px] px-4
+                                       focus:outline-none focus:border-yellow-300 focus:rounded-none"
+            value="{{ old('natural_direccion') }}"
         />
+        <span id="error_natural_direccion" class="text-red-500 text-sm col-span-6"></span>
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function (){
+
+        //Declaración de variables para seleccionar los elementos del DOM que vamos a necesitar
+        const departamentoSelect = document.getElementById('natural_departamento')
+        const provinciaSelect = document.getElementById('natural_provincia')
+        const distritoSelect = document.getElementById('natural_distrito')
+
+        const inputDepartamentoNombre = document.getElementById('nombre_departamento_natural')
+        const inputProvinciaNombre = document.getElementById('nombre_provincia_natural')
+        const inputDistritoNombre = document.getElementById('nombre_distrito_natural')
+
+        let listaDepartamento = []
+        let listaProvincia = []
+        let listaDistrito = []
+
+        //Cargar departamento
+        fetch('{{ asset('ubigeo/ubigeo_peru_2016_departamentos.json')  }}')
+            .then(response => response.json())
+            .then(departamentos =>{
+                listaDepartamento = departamentos;
+
+                //console.log(departamentos)
+
+                //Mostrar los departamentos en el select
+                departamentos.forEach(departamento => {
+                    const option = document.createElement('option');
+                    option.value = departamento.id;
+                    option.textContent = departamento.name;
+                    departamentoSelect.appendChild(option);
+                })
+            })
+            .catch(error => console.error('Error al cargar los departamentos: ', error));
+
+        //Al cambiar departamento
+        departamentoSelect.addEventListener('change', function (){
+            const selectDepartamentoId = this.value;
+            provinciaSelect.innerHTML = '<option value="">Selecciona una provincia</option>';
+            distritoSelect.innerHTML = '<option value="">Selecciona un distrito</option>';
+
+            inputProvinciaNombre.value = '';
+            inputDistritoNombre.value = '';
+
+            const  departamentoSeleccionado = listaDepartamento.find(dep => dep.id === selectDepartamentoId);
+            inputDepartamentoNombre.value = departamentoSeleccionado ? departamentoSeleccionado.name : '';
+
+            if (selectDepartamentoId){
+                fetch('{{ asset('ubigeo/ubigeo_peru_2016_provincias.json')  }}')
+                    .then(response => response.json())
+                    .then(provincias =>{
+                        listaProvincia = provincias;
+
+                        const filteredProvincias = provincias.filter(
+                            provincia => provincia.department_id === selectDepartamentoId
+                        );
+
+                        filteredProvincias.forEach(provincia => {
+                            const option = document.createElement('option');
+                            option.value = provincia.id;
+                            option.textContent = provincia.name;
+                            provinciaSelect.appendChild(option)
+                        })
+                    })
+                    .catch(error => console.error('Error al cargar provincias: ', error));
+            }
+
+        })
+
+        //Al cambiar provincia
+
+        provinciaSelect.addEventListener('change', function (){
+            const selectedProvinciaId = this.value;
+            distritoSelect.innerHTML = '<option value="">Selecciona un distrito</option>'
+            inputDistritoNombre.value = '';
+
+            const provinciaseleccionada = listaProvincia.find(prov => prov.id === selectedProvinciaId);
+            inputProvinciaNombre.value = provinciaseleccionada ? provinciaseleccionada.name : '';
+
+
+            if(selectedProvinciaId){
+                fetch('{{ asset('ubigeo/ubigeo_peru_2016_distritos.json')  }}')
+                    .then(response => response.json())
+                    .then(distritos =>{
+                        listaDistrito = distritos;
+
+                        const filteredDistritos = distritos.filter(
+                            distrito => distrito.province_id === selectedProvinciaId
+                        )
+
+                        filteredDistritos.forEach(distrito =>{
+                            const option = document.createElement('option');
+                            option.value = distrito.id;
+                            option.textContent = distrito.name;
+                            distritoSelect.appendChild(option)
+                        })
+                    } )
+                    .catch(error => console.error('Error al cargar distritos: ', error));
+            }
+
+        })
+
+        //cuando distrito cambie
+        distritoSelect.addEventListener('change', function (){
+
+            const  selectedDistritoId = this.value;
+            const  distritoSeleccionado = listaDistrito.find(dist => dist.id === selectedDistritoId);
+
+            inputDistritoNombre.value = distritoSeleccionado ? distritoSeleccionado.name : '';
+
+        } )
+
+
+    })
+</script>
